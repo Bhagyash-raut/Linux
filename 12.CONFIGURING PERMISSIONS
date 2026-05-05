@@ -1,0 +1,398 @@
+Linux File System Security: 
+Linux File System Security restricts user to access the files and directories. user require permissions to access files or directories. "Is -I" or "Il" command can be used to check security Of any file or directory. Above command will display contents from directory along with its security details. Some of security attributes are shown below, 
+Example, 
+-----------------------------------------------> ll   /root 
+total 8 
+-rw------- . 1 root root 6577  Jan 28 2019  original-ks.cfg 
+
+To check security of any particular directory, 
+-----------------------------------------------> ll -d /root 
+dr-xr-x--- . 3 root root 181 Nov 5 10:46 /root 
+
+Above example display contents from directory along with its security details. It contains ten 
+fields as mentioned below, 
+drwxr-xr-x   .  3 root root  181 Nov 5 10:46 /root 
+
+	
+	1.  File type.
+	2.  Owner Permissions. 
+	3.  Group Permissions. 
+	4. Other User Permission. 
+	5. Link Count. 
+ 6.  Owner of file/directory. 
+	7.  Group Owner of File or Directory.
+	8. File Size. 
+	9. Creation Date and Time. 
+	10.  File/Directory Name. 
+ 
+*File Types in Linux: There are seven types of file available mentioned as below. 
+
+File Type                               	Symbol	Example 
+Normal file/Regular File 	                  -	    /etc/passwd 
+Directory 	                                d     /home 
+Link file 	                                l	    /etc/grub.conf 
+Block Device File 	                        b   	/dev/vdb 
+Character Device File 	                    c	    /dev/pts/0 
+Socket File 	                              s	    /dev/log 
+Normal Pipe File	                          p	    /dev/initctl 
+
+Regular File: The regular file is a most common file type found on the Linux system. It governs all different files such us text files, images, binary files, shared libraries, etc. 
+Directory: Directory is second most common file type found in Linux. Directory can be created with the mkdir command 
+Character Device File: Character and block device files allow users and programs to communicate with hardware peripheral devices. 
+Block Device File: Block devices are similar to character devices. They mostly govern hardware as hard drives, memory, etc. 
+Local Domain Socket: Local domain sockets are used for communication between processes. 
+Generally, they are used by services such as X windows, syslog and etc. 
+Named piped file: Similarly, as Local sockets, named pipes allow communication between two local 
+processes. They can be created by the mknod command and removed with the rm command. 
+Symbolic Link: With symbolic links an administrator can assign a file or directory multiple identities. 
+Symbolic link can be thought of as a pointer to an original file. 
+
+
+
+* Link Count: Also called as reference count. It shows count of links of file/directory that has been created. 
+Default link count of directory is 2 whereas default link count of file is 1. Whenever new directory is created, link count of its just parent directory will increase by 1. 
+There are two types of symbolic link, 
+a. Hard Link 
+b. Soft Link 
+Below is the difference between hard and soft links, 
+Hard Link 	Soft Link 
+Inode number of hard link is same as that of 	Inode number of softlink is different than inode 
+inode number of original file. 	number of original file. 
+	
+Hardlink contain actual data from the file. 	Softlink contain path of original file and not the 
+	actual data. 
+Thus, size of hardlink and original file will be 	Thus, size of softlink depends on path length. 
+same. 	
+	
+Creating or removing hardlink will increase or 	Creating or removing softlink will not affect link 
+decrease link count by 1. 	count. 
+	
+Removing original file will only reduce the link 	Removing original file will disable softlink, since 
+count and it will not affect any of its hardlink. 	softlink points to the non-existing file. 
+	
+Creating hardlink of directory is not possible. 	Creating softlink of directory is possible. 
+	 
+Syntax to create hardlink, 	Syntax to create softlink, 
+# In  <original_file>  <hardlink_name>	# ln -s  <original_file>  <softLink_name> 
+Example, 
+Create Hardlink and softlink 
+-----------------------------------------------> In  /root/anaconda-ks.cfg   /root/Documents   ->hardlink 
+-----------------------------------------------> ln -s /root/anaconda-ks.cfg /root/Documents  ->softIink 
+----------------------------------------------->ll /root/Documents 
+
+
+
+* User and group ownership: Basically, by default, user who creates the file/directory is the owner and his primary group acquires group ownerships of that file/directory. user owner and group owner of file will be shown in 6th and 7th field as shown in the figure. 
+"chown" command is use to change owner and group where as using "chgrp" we can change group ownership. 
+Syntax, 
+# chown <user_name>:<group_name> <file/dir_name> 
+# chgrp    <group_name>  <file/dir_name>
+Example, 
+Change User Ownership 
+-----------------------------------------------> touch samplefile.txt 
+-----------------------------------------------> ll 
+I root root May 29 e8:56 samplefile.txt 
+-rw-r--r--. 
+-----------------------------------------------> ll
+
+Change Group Ownership 
+-----------------------------------------------> chgrp nagpur samplefile.txt 
+-----------------------------------------------> ll 
+
+Change user and group ownership using chown, 
+-----------------------------------------------> chown atu1:TCS samplefile.txt 
+-----------------------------------------------> Il 
+
+
+* Managing Permissions: Field 2nd, 3rd and 4th represents permissions for owner, group 
+owner and other users. Each of that field contain three basic permissions which allow user 
+to read, write, and executes files. The effect of these permissions differ when applied to file 
+or directory. If applied to a file, the read permission gives user the right to open file for 
+reading. Therefore, user can read it's content. 
+"chmod" command is use to change these basic permissions. 
+Permission	Applied to Files	 Applied to  Directories	Permission(Number) 
+			
+Read       r	Open a file  	List content of directory	4 
+			
+Write     w	Change contents of a 	Create and delete files and modify 	2 
+	file 	Permissions on files. 	
+Execute  x	Run a program 	Change to the directory	1 
+	file 
+	 
+
+Change permission using letters - 
+Syntax, 
+
+# chmod <u,g,o> <+,-,=> <r,w,x>   <file_name>
+Symbol 	Description	Symbol 	Description	Symbol 	Description
+  u	Owner permission 	+	add permission 	 r	 Read permission 
+  g	Group permission 	-	remove permission 	 w	Write permission 
+  o	Other user permission 	=	assign permission 	 x	Execute permission 
+	 		 
+Example, 
+Give write permission to group, 
+-----------------------------------------------> mkdir /nagpur 
+-----------------------------------------------> chmod g+w /nagpur/ 
+-----------------------------------------------> Is -Id /nagpur/ 
+
+Remove read and write permission for other users, 
+-----------------------------------------------> chmod o-rx /nagpur/ 
+-----------------------------------------------> Is -Id /nagpur 
+ 
+Assign read only permission for group and other users, 
+-----------------------------------------------> chmod go=r /nagpur/ 
+-----------------------------------------------> Is -Id /nagpur 
+
+Give execute permission to owner of file, 
+-----------------------------------------------> touch samplefiIe3. txt 
+-----------------------------------------------> chmod u+rwx samplefi1e3.txt 
+-----------------------------------------------> ll
+ 
+Remove read permission for group and assign read and write permission to other users, 
+-----------------------------------------------> chmod g-r,o=rw samplefiIe3.txt 
+-----------------------------------------------> Is -l samplefi1e3.txt 
+-rwx---rw-. 1 root root May 29 09:29 samplefiIe3.txt 
+
+Change permission using octal numbers - 
+Syntax, 
+# chmod <permission_in_numbers>  <file_name>
+
+OCTAL NO 	BINARY 	PERMISSION 
+0	000	---
+1 	001 	--x
+2 	010 	-w-
+3 	011 	-wx
+4 	100 	r--
+5 	101 	r-x
+6 	110 	rw-
+7 	111 	rwx 
+
+Example, 
+Changing permission using octal number, 
+----------------------------------------------->  mkdir /abhi 
+-----------------------------------------------> chmod 421 /abhi/ 
+-----------------------------------------------> Is -Id /abhi/ 
+
+-----------------------------------------------> chmod 732 /abhi/ 
+-----------------------------------------------> Is -Id /abhi/ 
+
+-----------------------------------------------> chmod 644 /abhi/ 
+-----------------------------------------------> Is -Id /abhi/ 
+
+----------------------------------------------->  chmod 755 /abhi/ 
+----------------------------------------------->  Is -Id /abhi/ 
+
+Default Permission: When a user creates a file as a regular user, it's given permission rw-rw-r— (664) by default. A directory is given the permission rwxrwxr-x (775). For the root user, file and directory permission are rw-r—r— (644) and rwxr-xr-x (755), respectively. These default values are determined by the value of umask. Type umask to see what your umask value is. 
+If you ignore the leading zero for the moment, the umask value masks what is 
+considered to be fully opened permissions for a file 666 or a directory 777. The umask value 
+of 002 results in permission for a directory of 775 (rwxrwxr-x). That same umask results in a 
+file permission of 644 (rw-rw-r—). 
+Default Permission for root and standard user 
+User 	Directory 	File 
+Root 	755 	644 
+Standard User	775 	664 
+
+Calculating Permission with Umask 
+USER 		Calculation Umask 	Umask Permission 
+Root 	Dir 	777-022 	755 
+	File 	666-022 	644
+Standard 	Dir 	777-002 	775 
+	File 	666-002 	664 
+Umask for root user and standard user 
+-root---------------------------------------->   umask      ->default umask for root user 
+0022 
+----------------------------------------------->   umask       ->umask for standard user 
+0002 
+Changing umask value temporary 
+----------------------------------------------->   umask 0001
+----------------------------------------------->  mkdir demo 
+----------------------------------------------->   ll
+
+Changing umask value permanent ,
+----------------------------------------------->   vim /etc/profile 
+59 if [ $UID -gt 199 ] && [ "/usr/bin/id -gn " = " /usr/bin/id -un " ]; then 
+60       umask 002        #change the value for standard user Line 60
+61 else 
+62       umask 000      #change the value for root Line 62 
+63 fi 
+: wq 
+----------------------------------------------->  source /etc/profile 
+----------------------------------------------->  umask 
+0000
+
+* Special Permission: We have three types of special permission, i.e. suid, sgid, and stickey bit. 
+Name 	Numeric 	Relative 	On Files 	Symbol 
+	Value 	Value 		
+SUID 	4000 	u+s	User executes file with 	No meaning. 
+			permissions of file 	
+			owner. 	
+SGID 	2000	g+s	User executes file with 	Files created in 
+			permissions of group 	directory get the 
+			owner. 	same group owner. 
+Sticky Bit 	1000 	o+t 	No meaning. 	Prevents users from 
+				deleting files from 
+				other users. 
+
+SUID (set user identity): SUID (Set owner User ID up on execution) is a special type of file permissions 
+given to a file. Normally in Linux/UNIX when a program runs, it inherits access permissions from the 
+logged in user. SUID is defined as giving temporary permissions to a user to run a program/file with 
+the permissions of the file owner rather that the user who runs it. In simple words users will get file 
+owners permissions as well as owner UID and GID when executing a file/program/command. 
+
+Syntax, 
+# chmod u+s <file_name>
+Example, 
+(As we seen in basic commands, dmidecode command is use to get hardware information of the 
+system. But dmidecode command is owned by root user and present in /sbin directory. That means, 
+no local user can access it. Following example illustrates this scenario, and then set suid permission 
+on command. After applying suid permission, any user can execute this command.) 
+
+
+shubhar----------------------------------------------->  dmidecode 
+# dmidecode 3.0 
+/ sys/ firmware/dmi/tables/ : 
+Scanning /dev/mem for entry point. 
+/dev/mem: Permission denied 
+shubhar-----------------------------------------------> logout 
+root-----------------------------------------------> which dmidecode 
+/sbin/ dmidecode 
+Permission denied 
+root----------------------------------------------->  /sbin/dmidecode 
+-rwxr-xr-x I root root 110608 Jul 31 2018 /sbin/dmidecode 
+----------------------------------------------->  chmod u+s /sbin/dmidecode 
+----------------------------------------------->  /sbin/dmidecode 
+-rwsr-xr-x I root root 110608 Jul 31 2018 /sbin/dmidecode 
+----------------------------------------------->  su - shubham 
+Last login: Thu Dec 12 UTC 2019 on pts/e 
+shubhar----------------------------------------------->  dmidecode 
+# dmidecode 3.0 
+Getting SMBIOS data from sysfs. 
+SMBIOS 2.7 present. 
+11 structures occupying 359 bytes. 
+Table at exeeeEBe1F. 
+Handle øxøeøo, DMI type e, 24 bytes 
+BIOS Information 
+vendor: xen 
+
+SGID (set group identity): SGID (Set Group ID up on execution) bit is set on directory if we give SGID 
+permission to particular directory and if file created in that directory by root user or local user that 
+files will get directory group ownership automatically. In other words, when we applied sgid bit to 
+particular directory, it inherit group permission to all files and directories that will create in sgid 
+applied directory. 
+Syntax,  
+# chmod g+s  <file_name>
+Example, 
+----------------------------------------------->  mkdir /demo 
+-----------------------------------------------> chgrp TCS /demo 
+-----------------------------------------------> ll -d /demo 
+drwxr-xr-x 2 root TCS 6 Dec 12 05:55 /demo 
+-----------------------------------------------> touch /demo/file 
+-----------------------------------------------> ll /demo/file 
+root root e Dec 12 05:56 /demo/file 
+----------------------------------------------->  chmod g+s /demo 
+-----------------------------------------------> ll -d /demo 
+drwxr-sr-x root shubham 31 Dec 12 05:57 /demo 
+----------------------------------------------->  touch /demo/filel 
+----------------------------------------------->  ll /demo 
+
+
+Stickey Bit: Sticky Bit is mainly used on folders in order to avoid deletion of a folder and its content by 
+other users though they having write permissions on the folder contents. If Sticky bit is enabled on a 
+folder, the folder contents are deleted by only owner who created them and the root user. No one 
+else can delete other user's data in this folder (Where sticky bit is set). This is a security measure to 
+avoid deletion of critical folders and their content (sub-folders and files), though other users have full 
+permissions. 
+Syntax, 
+# chmod o+t <fiLe_name> 
+Example, 
+[root----------------------------------------------->mkdir /demo 
+[root----------------------------------------------->chmod 777 /demo 
+[root----------------------------------------------->chmod o+t /demo 
+[root----------------------------------------------->su - shubham 
+[shubhan----------------------------------------------->touch /demo/file.txt 
+[shubhan----------------------------------------------->logout 
+[root----------------------------------------------->su - chetan 
+[chetan-----------------------------------------------> rm -f /demo/file.txt 
+rm: cannot remove %/demo/file.txt' : Operation not permitted 
+
+ACL (Access Control List): ACL use to set permission over file and directory to specific user or specific group. We can assign multiple user with different permission on same file or directory. Access control list (ACL) provides an additional, more flexible permission mechanism for file systems. It is designed to assist with UNIX file permissions. ACL allows 
+you to give permissions for any user or group to any disc resource. 
+
+Think of a scenario in which a particular user is not a member of group created by you but still you want to give some read or write access, how can you do it without making user a member of group, here comes in picture Access Control Lists, ACL helps us to do this trick. Basically, ACLs are used to make a flexible permission mechanism in Linux. 
+From Linux man pages, ACLs are used to define more fine-grained discretionary access rights for files and directories. 
+
+setfacl and getfacl are used for setting up ACL and showing ACL respectively. 
+Syntax, (to apply ACL) 
+# setfacl -m u:<user_name>:<permission>  <file_name>                                                      ->     for user 
+# setfacl -m g:<grp_name>: <permissions>  <file_name>                                                     ->     for group 
+Syntax, (to check ACL) 
+# getfacl <fiLe_name> 
+Examples, 
+For user perspective, 
+-----------------------------------------------> mkdir /project 
+----------------------------------------------->ll -d /project 
+
+-----------------------------------------------> useradd amit     -> other users
+-----------------------------------------------> useradd sumit      -> other user
+
+-----------------------------------------------> setfacl -m u:akash:rwx /project     ->apply acl
+-----------------------------------------------> getfacl /project  -> check acl 
+-----------------------------------------------> su - amit 
+amit-----------------------------------------------> touch / project/amit. txt successfully 
+-----------------------------------------------> exit 
+-----------------------------------------------> setfacl -m u:sumit:r-- /project 
+-----------------------------------------------> su - sumit
+
+-----------------------------------------------> su - sumit 
+sumit-----------------------------------------------> cd /project 
+permission denied 
+
+
+For group perspective, 
+[root----------------------------------------------->  groupadd Tcs 
+(root----------------------------------------------->  groupadd WIPRO 
+[root----------------------------------------------->  useradd -G Tcs Tl 
+[root-----------------------------------------------> useradd -G TCS T2 
+[root----------------------------------------------->  useradd -G WIPRO WI 
+[root----------------------------------------------->  useradd -G WIPRO W2 
+[root-----------------------------------------------> useradd -G WIPRO W3 
+[root-----------------------------------------------> ll -Id /project 
+drwxr-xr-x 2 root root 6 Dec 12 05:55 /project 
+(----------------------------------------------->  getfacl /project 
+[root----------------------------------------------->  setfacl -m g:TCS:rwx /project 
+[root----------------------------------------------->  setfacl -m g:WIPRO:---  /project 
+[root----------------------------------------------->  getfacl /project 
+[root----------------------------------------------->  setfacl -m u:w3:rwx /project 
+
+In above example, we have no permission of group WIPRO but we can put some permission 
+to the user 'W3' of WIPRO group. 
+
+Copy ACL of file/dir to another file/dir 
+[root----------------------------------------------->  touch /abc.txt 
+[root-----------------------------------------------> getfacl /abc.txt 
+[root----------------------------------------------->  getfacl /project I setfacl 
+[root----------------------------------------------->  getfacl /abc.txt 
+
+Remove ACL from file/dir 
+[root----------------------------------------------->  setfacl  -x u:amit /project   -> removing single user 
+[root-----------------------------------------------> setfacl  -x u:sumit,u:W3  /project      ->multi-user
+[root-----------------------------------------------> setfacl -x g: IBM /project       ->removing single group 
+[root-----------------------------------------------> setfacl -x  g:Wipro,g:TCS /project         ->multi-group 
+[root----------------------------------------------->  getfacl /project 
+[root----------------------------------------------->  setfacl -b / abc . txt removing all ACL 
+
+SUDO permission: sudo (Super User DO) command in Linux is generally used as a prefix of some command that only superuser are allowed to run. If you prefix sudo with any command, it will run that command with elevated privileges or in other words allow a user with proper permissions to execute a command as another user, such as the superuser. This is the equivalent of "run as administrator" option in Windows.
+The option of sudo lets us have multiple administrators. To allow user to use sudo command, user must be listed in "/etc/sudoers" file. Or user should belong to wheel group. Wheel group is default group which allow users to use sudo command. 
+Syntax, 
+# sudo <command_Line> 
+Examples, 
+[root----------------------------------------------->  su - amit 
+[amit----------------------------------------------->  useradd shubham 
+-bash: /usr/sbin/useradd: Permission denied 
+[amit-----------------------------------------------> sudo useradd shubham 
+
+Visudo   = /etc/sudoers
+
+Usermod -aG sudo <username>
+Usermod -aG wheel <username>
+
