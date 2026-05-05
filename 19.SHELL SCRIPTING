@@ -1,0 +1,118 @@
+Interface between users and Kernel/OS
+CLI is a SHELL
+
+HOW YOU WILL FIND Shell:
+	Echo $0
+	Cat /etc/shells
+	/etc/passwd
+	
+TYPES OF SHELLS:
+GNOME
+	Simple and modern GUI.
+	Default in many distributions like Ubuntu.
+	Uses menus, windows, icons, and mouse interaction.
+KDE
+	KDE Plasma
+	Highly customizable desktop environment.
+	More visual features and settings.
+
+sh
+	Bourne shell
+	One of the oldest Unix shells.
+
+Bash
+	Most popular Linux shell.
+	Default shell in many Linux systems.
+
+Csh
+	C shell
+	Shell with syntax similar to the C programming language.
+
+Tcsh
+	
+	Improved version of C shell.
+	Supports command completion and editing.
+	
+																
+
+Shell scripting means writing a set of commands in a file so the shell (like Bash) can execute them automatically in a Linux system. It is used to automate tasks like backups, file creation, deployments, etc.
+ 
+PERMISSIONS--   -rwx r-x r-x ------- Executable Permissions
+
+Text Processing
+grep "error" logfile.txt
+Other tools:
+	grep → search text
+	awk → pattern scanning
+	sed → text editing
+
+1)#!/bin/bash
+
+echo "Hello World"
+echo "Welcome to Shell Scripting"
+
+2)#!/bin/bash
+
+a="MOHIT"
+b="rohit"
+c="kohit"
+d="nohit"
+echo "My name is $a"
+Echo "$b"
+Echo "$c"
+Echo "$d"
+
+3)Input / Output
+#!/bin/bash
+Echo  Namskar, My name Ubuntu
+echo
+echo  My name is name?
+Read namecont
+Echo 
+Echo  Namste $namecont
+
+
+
+4)IF CONDITIONS      --------STATEMENTS
+#!/bin/bash
+
+num=10
+
+if [ $num -gt 5 ]
+then
+echo "Number is greater than 5"
+Else 
+Echo "Number not found"----------------COMMANDS
+Fi
+
+5)Loop 
+#!/bin/bash
+
+for i in 1 2 3 4 5
+do
+echo "Number: $i"
+Done
+
+6)do-while scripts
+#!/bin/bash
+
+i=1
+while [ $i -le 5 ]
+do
+echo "Value: $i"
+i=$((i+1))
+done
+
+7)Functions
+Functions help reuse code.
+
+#!/bin/bash
+
+greet(){
+echo "Hello DevOps"
+}
+
+Greet
+
+
+
