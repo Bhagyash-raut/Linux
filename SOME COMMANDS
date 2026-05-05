@@ -1,0 +1,64 @@
+Touch:
+-used to create file
+Syntax: touch file_name
+ 
+Cat >: - is used to create file and we can add content to it
+Syntax: cat > file_name
+-type the file contents and use 'ctrl + d' to save and exit.
+Cat >names
+
+Cat : 
+-is used to display file contents
+Systax: cat file_name
+Eg. Cat demo
+
+Cat >> : 
+-is used to edit file/ add on 
+
+Echo:
+	- Is used to print 
+Echo > file_name:
+	- Is used to create file also
+
+Clear:
+	- Clean the terminal
+
+Rm  file_name:
+	- Is used to remove /delete files 
+Syntax: rm file_name
+Eg. Rm demo
+
+Mv : has 2 use cases
+	- Rename and mv the file 
+Rename: 
+Syntax: mv <old_file> <new_file>
+
+Cp:
+-cope file
+	- Eg - copy <source> <destination>
+Cp -r:
+	- Copy directory 
+  - -r = recursively = altogether
+
+Head:
+ -
+-head -5 test
+
+Tail:
+	- Tail -1 
+	
+	
+Sort :  - used to sort data     sort -r
+Sysntax: sort <file_name>
+Eg. Sort demo
+
+Sort demo | uniq:
+
+Uniq:- used to remove adjacent duplicate lines from file 
+Syntax : uniq <file_name>
+Eg. Uniq demo
+
+
+
+
+
