@@ -1,0 +1,53 @@
+An absolute path is the complete path from the root directory (/) to a file or directory.
+	Always starts with /
+	Independent of the current directory
+	Gives the full location
+/home/student/Documents/Linux/notes.txt
+*
+A relative path specifies the location of a file or directory relative to the current working directory.
+	Does NOT start with /
+	Depends on where you are currently
+	Shorter and easier for quick navigation
+If current directory is:
+/home/student
+Relative path:
+Documents/Linux/notes.txt
+ Symbol	Meaning
+ .	Current directory
+ ..	Parent directory
+ ~	Home directory
+Ex.
+cd   ../Downloads
+Feature
+Absolute Path
+Relative Path
+Starts with /
+Yes
+No
+Depends on the current directory
+No
+Yes
+Full location
+Yes
+No
+Length
+Longer
+Shorter
+Using Absolute Path:
+cd /home/student/Documents
+
+Using Relative Path:
+cd Documents
+cat file.txt
+	Absolute path starts from root /
+	Relative path starts from current directory
+	Absolute paths are fixed and reliable
+	Relative paths are shorter and convenient
+
+Absolute path:  
+/home/student/docs
+
+Relative path:
+docs/notes
+Absolute Path: Full home address (Country → City → Street → House)
+Relative Path: Directions from your current location
