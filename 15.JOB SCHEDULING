@@ -1,0 +1,236 @@
+What is Job Scheduling in Linux?
+Job Scheduling in Linux is the process of automatically running commands or scripts at a specific time or interval without manual intervention. It is used to a task for particular time. It is a feature user to execute a command or task at specified time. It is used for the periodic job.
+
+Why we use Job Scheduling
+	Automate repetitive tasks
+	Reduce manual work
+	Ensure tasks run on time
+	
+
+Real-World Examples
+	Cleaning log files weekly
+	Restarting services automatically
+	Sending reports daily
+
+
+CRON JOB
+cron is a time-based job scheduler used to run tasks repeatedly (daily, weekly, monthly, etc.).
+Cron Daemon
+	Service name: crond
+	Runs in background
+	Executes scheduled jobs
+Check cron service
+systemctl status crond
+
+Cron Job Syntax 
+Cron Format
+* * * * * command
+Field	Meaning
+1st	Minute (0–59)
+2nd	Hour (0–23)
+3rd	Day of month (1–31)
+4th	Month (1–12)
+5th	Day of week (0–7)
+
+Example
+30 2 * * *   ./backup.sh
+
+Managing Cron Jobs
+
+Edit crontab - edits the current crontab file. If it doesn’t exit, it create one.
+crontab -e
+List cron jobs - lists the contents of the current users crontab file.
+crontab -l
+Remove cron jobs - remove jobs/task from crontab file
+crontab -r
+
+
+Cron Job Examples 
+Run command every minute
+* * * * *    echo "Hello Linux" >> /root/file.txt
+* * * * *    systemctl start 
+
+
+
+System Cron Directories
+Directory	Purpose
+/etc/cron.daily	Daily jobs
+/etc/cron.weekly	Weekly jobs
+/etc/cron.monthly	Monthly jobs
+/etc/cron.hourly	Hourly jobs
+
+
+Eg : 
+
+10:05 1 tarik
+5 10 1 *  * touch file
+
+
+very minute
+* * * * * date >> /tmp/date.log
+30 2 * * *  date >> /tmp/date.log
+Lab 2
+Schedule a job at 7 PM today using at
+at 7 PM
+touch /tmp/at_test.txt
+Ctrl + D
+
+Lab 3
+Check cron logs
+cat /var/log/cron
+
+
+
+Job scheduling is a feature that allows a user to submit a command or program for execution 
+at a specified time in the future. On a Linux server, it is important that certain tasks run at certain 
+times the execution of the command or program could be one time or periodically based on a pre- 
+determined time schedule. For example, scheduling system maintenance commands to run during 
+nonworking hours is a good practice, as it does not disrupt normal business activities. 
+
+
+In Linux, we have three methods to schedule a job, 
+• at —single time execution 
+• crontab — periodic execution 
+• anacron — periodic execution 
+# at 
+The at command uses atd service for executing jobs. At command queued the task 
+into /var/spool/at and executes them when it is scheduled. After execution, tasks removed 
+from the queue. After writing desired jobs, you can save jobs using shortcut key "ctrl+d" 
+Syntax, # at 
+
+Example, 
+Scheduling at job, 
+-------------------------------------> at "14:30 31 jan 2020" 
+touch /root/file.txt 
+mkdir /root/practice 
+job 3 at Fri Jan 31 2020 
+
+At now + 1 minute
+Ex: echo" AT JOB run at $(data)" >> /tmp/demo.log
+
+Query for queued tasks, 
+--------------------------------------> atq 
+Thu Feb 14 2020 a root 
+Fri Jan 31 2020 a root 
+
+Removing queued jobs, 
+--------------------------------------->atrm 2 
+--------------------------------------->atq 
+Fri Jan 31 2020 a root 
+
+# crontab 
+Crontab is similar as that of window task scheduler in windows. In Linux, we schedule 
+jobs using crontab. Crontab job scheduling technique is very useful for creating backup, 
+scanning system, performing jobs with daily, weekly, monthly basis, etc. A daemon 
+called crond runs in the background and check its configuration every minute to examine 
+configuration files in order to execute commands or shell scripts specified in the crontab if the 
+time matches with specified time. Crontab can executes job repeatedly in specified time 
+interval. 
+Crond executes cron jobs on a regular basis if they comply with the format defined in 
+the /etc/crontab file. Crontables for users are located in the /var/spool/cron 
+directory. A cron table includes six fields separated by space or tab characters. The first five 
+fields specify the times to run the command, and the sixth field is the absolute pathname to 
+the command to be executed. These fields are mentioned in /etc/crontab file. 
+/etc/crontab file, 
+# cat /etc/crontab 
+SHELL-/bin/bash 
+PATH=/sbin : [bin : /usr/sbin : /usr/bin 
+MAILTO-root 
+
+#For details see man 4 crontabs 
+
+#Example of job definition: 
+#  .-------------------------------------minute (O - 59) 
+#  |     .--------------------------------hour (0 - 23) 
+#  |    |     .----------------------------day of month (1 - 31 )
+#  |    |    |      .------------------------month (1 - 12) OR jan, feb, mar, apr.. 
+#  |    |    |     |    .---------------------day of week (0 - 7) (Sunday=0 or 7) OR sun,mon,…….. 
+#  |    |    |     |    |
+#  *    *    *    *    *  user-name command to be executed 
+
+
+Syntax, 
+# crontab <Options>, 
+Example, 
+Options,
+-e	Edit cron table 
+-l	List cron table 
+-r	Remove crontable 
+u	Specify user 
+-e -u	Edit crontable for specific user 
+-l -u	List crontable of specific user 
+-r -u	Remove crontable of specific user 
+
+Suppose, we have to schedule following jobs 
+1. Create a file in /root/Downloads dir with name FLOWER.txt at 10.30 pm on 15 Aug. 
+2. Display "Welcome to Cloudblitz" massage on terminal at midnight of every Saturday. 
+3. Display "HELLO" massage on terminal after every hour on 10th of Jan, Feb, and March 
+	•  *  *  *  *  * echo "cron JOB RUN at $(date)" >> /tmp/demo.log
+	
+-------------------------------------> crontab -e 
+
+editing current user's crontab 
+30 22 15 aug * /bin/touch /root/Down10ads/FLOWER.txt 
+* * sat /bin/echo "Welcome to Cloudblitz" 
+e * 1B jan,feb,mar * /bin/echo "HELLO" 
+
+Listing crontable, 
+-------------------------------------> crontab —l 
+30 22 15 aug * /bin/touch /root/DownIoads/FLOWER.txt 
+e * * sat /bin/echo "Welcome to Cloudblitz" 
+e * 10 jan,feb,mar * /bin/echo "HELLO" 
+
+Scheduling a job for Natasha user, creating file in Natasha's home directory at 10 am on Jan 
+31st. 
+-------------------------------------> crontab —e —u natasha 
+e 10 31 jan * /bin/touch •v/demo 
+
+
+0 0 * * * (12 midnight daily)
+ * * * *  *  (1 - 5) ( mon to Friday)
+               MON-FRI
+
+Special string in cron   @reboot , @daily, @hourly, etc            
+Syntax:
+@reboot  /path/
+
+
+Anacron
+	Used when system is not running continuously
+	Executes missed cron jobs after system starts
+  
+We perform anacron for:
+       Daily System Backup
+       Weekly Log File Cleaning
+       Monthly Reports Generation
+       Software  Updates
+       Databases Maintenance
+   
+Cron jobs fail if the system is OFF.
+Anacron runs missed jobs automatically when system starts.
+
+Configuration file:
+
+/etc/anacrontab
+
+Example entry
+
+1   5   backup-job   /home/user/backup.sh
+1   1   test-job echo"ANACRON JOB RUN at $(date)" >> /tmp/demo.log
+Period in  day      delay in minutes     job-identifier     command
+Field
+Meaning
+1
+Run every 1 day
+5
+Wait 5 minutes after boot
+backup-job
+Job name
+command
+Script to run
+
+1    5    backup-job    /home/user/backup.sh
+
+Sudo anacron -f   ------> manually you can perform the task
+          anacron -fdn   ------> to check status of the job
+
