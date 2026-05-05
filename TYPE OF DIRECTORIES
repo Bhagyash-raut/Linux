@@ -1,0 +1,61 @@
+Types of Directory in Linux
+In Linux, directories are used to organize files and system data. Different types of directories serve different purposes in the file system.
+
+1. Root Directory (/)      
+	• The top-most directory in Linux
+	• Represented by /
+	• All Other directories start from root
+Example:
+/
+
+2. Home Directory (~)
+	• Personal directory for each user
+	• Stores user files, documents, downloads, etc.
+	• Represented by ~
+Example:
+/home/student
+
+3. Parent Directory
+	• The directory that contains another directory
+	• Represented by ..
+Example:
+/home/student/Documents
+Here, student is the parent directory of Documents
+
+4. Child Directory
+	• A directory inside another directory
+Example:
+Documents/Notes
+Here, Notes is the child directory of Documents
+
+5. Current Directory
+	• The directory you are currently working in
+	• Represented by    .
+Ex:
+pwd
+
+6. Subdirectory (Nested Directory)
+	• A directory inside another directory, at any level
+Example:
+/home/student/Documents/Linux/Notes
+
+7. System Directories
+Important directories used by the Linux system:
+Directory	Purpose
+/bin	Essential user commands
+/sbin	System administration commands
+/etc	Configuration files
+/lib	System libraries
+/boot	Boot loader files
+/dev	Device files
+/proc	Process information
+/tmp	Temporary files
+/var	Variable data (logs, mail)
+
+8. Working Directory
+	The directory where commands are executed
+	Same as current directory
+	
+	pwd
+	
+	
