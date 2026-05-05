@@ -1,0 +1,75 @@
+Swap memory is a portion of disk space used by the OS when RAM is full.
+In CentOS (Linux):
+	RAM = fast but limited 
+	Swap = slow but helps avoid crashes 
+Example: 
+If your system has 4 GB RAM and running many processes:
+	RAM gets full → Linux moves inactive data to swap 
+	This prevents system from crashing (Out Of Memory) 
+
+Why Swap is Important 
+	Prevents system crash 
+	Supports memory-heavy apps 
+	Helps in multitasking 
+	Used for hibernation (optional) 
+
+Practical: Swap in CentOS 
+1. Check Existing Swap
+
+free -h                      /                      swapon --show
+
+2. Create Swap File (Example: 1GB)
+
+dd if=/dev/zero of=/swapfile bs=1M count=1024
+
+Alternative (faster):
+
+fallocate -l 1G /swapfile
+
+3. Set Correct Permissions
+
+chmod 600 /swapfile
+
+4. Make it Swap Format
+
+mkswap /swapfile
+
+5. Enable Swap
+
+swapon /swapfile
+
+6. Verify Swap
+
+free -h
+
+7. Make Swap Permanent
+Edit /etc/fstab:
+
+vi /etc/fstab
+Add this line:
+
+/swapfile swap swap defaults 0 0
+
+Check Swappiness Value
+
+cat /proc/sys/vm/swappiness
+     Default = 60
+	0 → Avoid swap 
+	100 → Use swap aggressively 
+Change Swappiness
+
+sysctl vm.swappiness=20
+
+Permanent:
+
+echo "vm.swappiness=20" >> /etc/sysctl.conf
+
+Suppose:
+	Your Docker containers / Kubernetes pods consume high memory 
+	System RAM becomes full 
+Without swap → Application crash
+With swap → System survives, performance slows but stable
+
+Swap is not replacement for RAM
+Too much swap usage = performance issue
+In cloud (AWS/Azure), often minimal swap is recommended
