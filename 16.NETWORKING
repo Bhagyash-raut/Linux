@@ -1,0 +1,317 @@
+It is a connection between two or more devices communicate with each other
+These device can include computers, servers , phones , printers and other hardware .
+The working of computer network can be simply defined as protocol which help in sending and receiving data.
+ 
+A protocol is a set of rules and standards that tell how data is transmitted over a  network.
+Eg.
+	IP , TCP , UDP, SSH , FTP , HTTP 80 , HTTPS 443 ,etc
+
+Types of Network:  - Networks are also classified by the geographical area they cover. This means how far the connected devices are located from each other. connects devices across extensive geographical area 
+	1. LAN: 
+	-A Lan is a type of network where devices are connected with each other and within a limited geographical area such as home, office
+	
+	2. MAN:
+	-  Man is used to connect several LANs together and it extends over a large area , usually city or campus
+	
+	3. WAN:
+           eg: across- continents
+
+PAN – Personal Area Network
+A PAN (Personal Area Network) is the smallest type of network, designed for personal use within a very short range.
+Key Characteristics
+	Covers a distance of a few meters (typically 1–10 m)
+	Used to connect personal devices
+	Usually wireless
+	Easy to create and manage
+Examples
+	Bluetooth connection between phone and earbuds
+	Mobile hotspot sharing internet from phone to laptop
+	Smartwatch connected to a smartphone
+	Wireless keyboard or mouse
+Example scenario:
+Your phone connected to wireless headphones via Bluetooth is a PAN.
+
+LAN – Local Area Network
+A LAN (Local Area Network) connects devices within a limited area such as a room, office, or building.
+Key Characteristics
+	Covers small areas (home, office, school building)
+	Can connect dozens to hundreds of devices
+	High data transfer speed
+	Usually controlled by a single organization or owner
+Technologies Used
+	Ethernet (wired network)
+	Wi-Fi
+Examples
+	Computers connected in a school computer lab
+	Devices connected to a home Wi-Fi router
+	Office computers connected through Ethernet cables
+Example scenario:
+All computers in an office connected to the same router form a LAN.
+
+CAN – Campus Area Network
+A CAN (Campus Area Network) connects multiple LANs within a large campus or organization.
+Key Characteristics
+	Covers a campus, university, military base, or corporate park
+	Larger than a LAN but smaller than a MAN
+	Often managed by one organization
+	High-speed fiber or wireless connections
+Examples
+	University network connecting multiple buildings
+	Corporate campus network
+	Hospital network connecting multiple departments
+Example scenario:
+All networks in different buildings of a university campus connected together form a CAN.
+
+MAN – Metropolitan Area Network
+A MAN (Metropolitan Area Network) connects networks across a city or metropolitan area.
+Key Characteristics
+	Covers tens of kilometers
+	Connects multiple LANs or CANs
+	Usually operated by telecommunication companies or government organizations
+Examples
+	City cable TV network
+	Telephone networks within a city
+	City-wide internet service networks
+Example scenario:
+The network used by an internet service provider to connect different neighborhoods in a city is a MAN.
+
+WAN – Wide Area Network
+A WAN (Wide Area Network) covers very large geographic areas such as countries or continents.
+Key Characteristics
+	No strict geographical limit
+	Connects multiple MANs and LANs
+	Uses satellite links, fiber optic cables, and telecom infrastructure
+	Usually operated by multiple organizations
+Examples
+	The Internet
+	International banking networks
+	Global company networks
+Example scenario:
+When your computer connects to
+
+Network Troubleshooting Tools: 
+
+1. ping  
+Purpose:    
+How It Works: Uses the ICMP ECHO_REQUEST to get an ICMP    
+ECHO_RESPONSE from a remote host.    
+Usage: For basic troubleshooting, you can run ping www.google.com to check network 
+connectivity and see response times and packet loss.  
+
+2. traceroute (or tracert on Windows)  
+Purpose: Track the route packets take to reach their destination.  
+How It Works: Sends UDP probes with increasing TTL values, showing each router 
+along the route and the delay in reaching it.  
+Usage: Helps find which gateway is causing a delay by showing response times and 
+where packets fail (indicated by ).  
+
+3. telnet  
+Purpose: Test network connections and protocTest internet network connections. ols.  
+How It Works: Attempts to establish a connection to a specified IP and port.  
+Usage: Test if a specific service is reachable, e.g., telnet google.com 443 .  
+
+4. curl  
+Purpose: Transfer data using multiple protocols, often for HTTP requests.  
+Usage:  
+Basic GET request:   curl   http://example.com 
+Check headers:   curl  -I http://example.com 
+POST request:  curl -X POST http://example.com 
+Save response to file:  curl http://example.com/file -o  output.file
+
+When you open a website:
+
+https://example.com
+Your browser sends an HTTP request to the server, and the server sends back a response (HTML page, image, data, etc.).
+Simple Flow
+
+Client (Browser / curl)
+        ↓
+     HTTP Request
+        ↓
+       Server
+        ↓
+     HTTP Response
+        ↓
+Client receives webpage/data
+
+ 
+5. dig (Domain Information Groper)  
+
+Purpose: Troubleshoot DNS problems and verify DNS records.  
+How It Works: Performs DNS lookups and displays information such as IP addresses.  
+ 
+Usage: dig google.com to get information like IP addresses, TTL, and DNS record types.  
+ 
+6. netstat  
+Purpose: Show network connections and port listening information.  
+Usage:  
+netstat -ip : List listening servers and their program names. 
+netstat -a : Show all active ports.  
+netstat -r : Show routing table.  
+
+7. nmap (Network Mapper)  
+Purpose: Discover hosts and services on a network.  
+How It Works: Sends raw packets to identify hosts, services, and operating systems.  
+Usage:  
+Discover hosts: nmap -sn 172.31.44.35/20 .  
+Scan ports on a host: nmap -A  172.31.36.237 .  
+
+8. ssh (Secure Socket Shell)  
+Purpose: Securely connect to remote machines to execute commands.  
+Usage:  
+Connect to a server: ssh username@hostname/IP .  
+Secure and encrypted, used for remote management and file transfers.  
+
+9. scp (Secure Copy Protocol)  
+Purpose: Securely copy files between local and remote hosts.  
+Usage:  
+
+Copy file to a remote server: scp  localfile.txt  user@remote-ip:/path/to/destination .  
+
+These tools are invaluable for network diagnostics, troubleshooting, and secure 
+communications, which are critical skills for any DevOps engineer. 
+
+	10. Wget 
+	Purpose : To download a file
+	
+	11. Rsysnc:
+	
+	rsync -avz source_file username@linux_ip:/destination/path
+	Options meaning:
+		-a → archive mode (preserves permissions)
+		-v → verbose (shows progress)
+		-z → compression during transfer
+	
+	rsync -avz project/ ubuntu@192.168.1.20:/home/ubuntu/project/
+	
+	Using rsync with SSH (recommended)
+	
+	rsync -avz -e ssh file.txt ubuntu@192.168.1.20:/home/ubuntu/
+	
+ip link set eth0 down
+ip link set eth0 up
+
+      Packet Capture (Advanced)
+
+tcpdump -i eth0   ----------------------------Traffic not reaching server
+tcpdump -i eth0 port 80  --------------------------Debug API / load balancer issues
+ 
+Some Networking Important Files:
+	/etc/resolv.conf → DNS 
+	/etc/hosts → local mapping 
+	/etc/sysconfig/network-scripts/ → CentOS configs 
+	/etc/netplan/ → Ubuntu configs
+	
+	localhost fails → OS issue 
+	gateway fails → network issue
+	
+
+
+Protocols:
+HTTP (hypertext transfer protocol – 80) – it is a web page
+HTTPS (hypertext transfer protocol secure – 443) – secure web page
+FTP (file transfer protocol – 20, 21) – transfers files and folders
+TFTP (trivial file transfer protocol -69 ) – transfers only files
+Telnet (teletype network – 23) – used to take remote connection using CLIData transmitted will be in plain text format
+SSH (secure shell – 22) – it is used to take remote connection using CLI. Data transmitted will be in encrypted format
+RDP (remote desktop protocol – 3389) – used to take remote connection using GUI
+POP3 (110 – post office protocol version 3) – can access mails from only one device
+IMAP (143 – internet message access protocol) – can access mails from multiple devices
+DNS (domain name service – 53) – used to resolve ip to domain name and domain name to ip
+DHCP (dynamic host configuration protocol – 67,68) – dynamically assigns ip to all the client machines which are in the same network
+SMTP (simple mail transfer protocol – 25) – used to transfer mails from one email server to another
+
+
+APIPA (automatic private ip address) –> 169.254.0.0 – 169.254.255.255
+When there is no connection between DHCP server and client or when there is no more ip addresses available in the DHCP pool, client machines obtains ip in the range 169.254.0.0 – 169.254.255.255 this is APIPA.
+
+IP address 
+It is a logical address used to identify devices uniquely in the network
+                  IPv4                                                                                             IPv6
+32 bit address                                                                                        128 bit address
+2^32 addresses are available                                                              2^128 addresses are available
+Dotted decimal representation                                                           hexa decimal representation
+Uses numbers from 0-9                                                                        numbers from 0-9 and A – F
+Less secure                                                                                              more secure
+Ex – 192.168.1.1                                                               ex – 1234:ABCD:ACDF:0004:0000:0000:0003:12AB
+
+
+Classes of IPV4
+Class A, B, C, D and E
+Address range for class A, B, C , D and E
+									
+Class A ->0 – 127 (0.0.0.0 – 127.255.255.255)  /8               255.0.0.0
+Class B->128 – 191 (128.0.0.0 – 191.255.255.255)  /16     255.255.0.0   unicasting
+Class C ->192-223 (192.0.0.0 – 223.255.255.255) /24        255.255.255.0
+
+Class D ->224-239(224.0.0.0 – 239.255.255.255)            Multicasting
+Class E ->240 -255 (240.0.0.0 – 255.255.255.255)           R &D
+
+
+
+Subnetting
+Subnetting is the process of dividing a large network into smaller sub-networks (subnets).
+It helps in efficient use of IP addresses and better network management.
+
+Why Subnetting is Used
+	• Efficient use of IP addresses
+	• Avoid wastage of IP addresses
+	• Reduce network congestion
+	• Improve network performance
+	• Better security and network management
+
+Example
+Suppose a network:
+192.168.1.0/24
+Total IP addresses = 256
+Instead of using one large network, we can divide it into smaller networks:
+192.168.1.0/26
+192.168.1.64/26
+192.168.1.128/26
+192.168.1.192/26
+Now the network is divided into 4 smaller subnets.
+
+CLASSLESS 
+Types of Subnetting
+FLSM (Fixed Length Subnet Mask)
+FLSM means all subnets have the same subnet mask and same size.
+Example:
+Network: 192.168.1.0/24
+Subnet mask used: /26
+Subnets created:
+192.168.1.0/26
+192.168.1.64/26
+192.168.1.128/26
+192.168.1.192/26
+Each subnet has equal number of hosts.
+
+VLSM (Variable Length Subnet Mask)
+VLSM means different subnet masks are used for different networks.
+Some networks may need more hosts, others may need fewer hosts.
+Example:
+Network: 192.168.1.0/24
+Division using VLSM:
+192.168.1.0/25  -> 126 hosts
+192.168.1.128/26 -> 62 hosts
+192.168.1.192/27 -> 30 hosts
+192.168.1.224/28 -> 14 hosts
+This avoids IP address wastage.
+
+CIDR (Classless Inter-Domain Routing)
+CIDR is a method used to allocate IP addresses more efficiently without using traditional classes (A, B, C).
+It uses prefix notation.
+Example:
+192.168.1.0/24
+10.0.0.0/8
+172.16.0.0/16
+Here:
+/24 = network bits
+CIDR helps in:
+	Efficient IP allocation
+	Reducing routing table size
+	Internet routing optimization
+
+
+
+
+
