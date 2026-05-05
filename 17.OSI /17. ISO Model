@@ -1,0 +1,130 @@
+The OSI Model is a 7-layer networking model used to understand how data travels from one computer to another over a network.
+It was developed by the International Organization for Standardization (ISO).
+
+7 Layers of OSI Model
+         Sender 
+Key Sender-Side Process (Top-Down):
+Layer 7 - Application: Generates data (e.g., HTTP request).
+Layer 6 - Presentation: Encrypts, compresses, or formats data.
+Layer 5 - Session: Opens and manages the connection.
+Layer 4 - Transport: Segments data; adds source/destination ports (TCP/UDP).
+Layer 3 - Network: Adds logical IP addresses; packages data into packets.
+Layer 2 - Data Link: Adds physical MAC addresses; frames data.
+Layer 1 - Physical: Converts frames into binary bits (0s and 1s) and transmits via physical media
+
+
+Data Encapsulation and De-Encapsulation
+Data Encapsulation
+When data travels from sender to receiver, each layer adds a header to the data.
+This process is called Data Encapsulation.
+Data Decapsulation
+At the receiver side, each layer removes the header added by the sender.
+This process is called Data Decapsulation.
+
+Flow:
+Application → Presentation → Session → Transport → Network → Data Link → Physical
+
+
+Application Layer
+	Provides interface between user and network applications
+	Allows applications to communicate over the network.
+Ex.
+	Web browsers
+	Email clients
+	File transfer applications
+Presentation Layer
+Responsible for data formatting and security.
+Functions:
+  Encryption / Decryption
+Converting readable data to unreadable data for security.
+Example:
+Plain text → Encrypted text
+   Encoding / Decoding
+Converting one data format to another.
+Example:
+ASCII → EBCDIC
+   Compression / Decompression
+	Reduces size of data for faster transmission
+	Restores data back to original size at receiver.
+
+Session Layer
+Responsible for connection management between devices.
+Functions:
+	Establish session
+	Maintain session
+	Terminate session
+
+Dialogue Control :Dialogue Control is used to control the communication between two devices, meaning it decides how the devices will send and receive data during a session.
+Communication types:
+Simplex
+	One-way communication
+	Example: TV broadcasting, Radio
+Half Duplex
+	Two-way communication but one device at a time
+       Example: Walkie-talkie
+Full Duplex
+	Two-way communication simultaneously
+       Example: Mobile phone call
+
+Transport Layer
+Responsible for end-to-end communication.
+Functions:
+Port Addressing
+Assigns source and destination port numbers.
+Example:
+	HTTP → Port 80
+	HTTPS → Port 443
+	SSH → Port 22
+Segmentation
+Large data is divided into small segments.
+Flow Control
+Controls data transmission speed according to receiver capacity.
+
+TCP and UDP
+TCP (transmission control protocol) – connection oriented – transmitter receives acknowledgement for all the messages transmitted by transmitter.
+UDP (user datagram protocol - connection less) – there will not be any acknowledgements.
+
+Network Layer
+Responsible for logical addressing and routing.
+Functions:
+IP Addressing
+Assigns source and destination IP addresses.
+Example:
+192.168.1.10 → 8.8.8.8
+Fragmentation
+Large packets are divided into smaller fragments.
+Routing
+Finding the best path to transfer data between networks.
+Devices used: Routers
+
+Data Link Layer
+Responsible for node-to-node communication.
+Functions:
+Physical Addressing
+Assigns MAC addresses.
+
+Example MAC address:
+00:1A:2B:3C:4D:5E
+Error Detection and Correction
+Detects and corrects transmission errors.
+Devices: Switch , Bridge
+
+Physical Layer
+Responsible for actual transmission of data through cables or wireless signals.
+Functions:
+	Converts data into bits (0s and 1s)
+	Handles electrical signals
+Devices: Hub ,Cables, Repeaters
+
+Always explain layer-wise debugging: 
+	L1 → Interface 
+	L3 → IP & routing 
+	L4 → Port 
+	L7 → Application (curl) 
+Mention tools
+	tcpdump → packet level 
+	ss → socket level 
+	curl → application level
+
+
+
