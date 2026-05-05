@@ -1,0 +1,45 @@
+Commands are executable programs that perform specific tasks. 
+These executable programs can be called using their name as per the provided syntax. 
+
+General Syntax: 
+# <commands>   -<options>  -<argument>  <multiple arguments> 
+
+Commands- To run the command. 
+Options - To adjust the behaviour of the commands. 
+Arguments - The behaviour, file folder name. (path)
+
+BASIC COMMANDS :
+Sudo su - / sudo -i
+Mkdir dir_name
+Mkdir dir1 dir2 dir3
+Mkdir -p parent/child
+ls dir
+Cd 
+Cd..
+Rmdir
+Rm -rf
+
+#tty                        	This command displays the current user terminal number. 
+#who    	                    Display current logged in all users with their details. 
+#who am i                    	Display current user details. 
+#whoami 	                     Display current user username. 
+#w	                          Display all current user details with their time schedule. 
+#wh<tab> <tab>                	To see similar commands or autocomplete cmd. 
+#clear or ctrl+l               It clears screen but not background data. 
+#cal 	                         It displays current month of calendar. 
+#cal <year> 	                 It displays specified year calendar. 
+#cal <month> <year>            It displays specific months calendar in particular year 
+#cal  -3 	                     It displays previous, current and next month's calendar of current year. 
+#cal -j <year> 	              It displays Julian days of particular year. 
+#date                       	It shows current date and time. 
+#date -s  "DDMMYYYY  HH:MM:SS" 	It set date and time. 
+#reboot OR #init 6 	          To restart the system 
+#power off OR #init 0        	To power off system. 
+#shutdown                    	It shutdown system after 1 min 
+#shutdown -h 10 	            It shutdown system after 10 min and broadcast 
+#shutdown -c                 	message to all users. 
+#shutdown now OR shutdown -h 	It cancels shutdown timer and broadcast message to all users. 
+#logout OR exit OR ctrl + d 	It immediately shutdown system. 
+#hostname OR hostname -s    	Logout from currently logged in user. Shows machine name 
+	
+
