@@ -1,0 +1,154 @@
+
+-it is a software program that acts as a mediator between the hardware and the user interface.
+
+Functions of an Operating System
+An OS performs several important tasks:
+	1. Process Management
+	2. Memory Management
+	3. File System Management
+	4. Device Management
+	5. Security and User Management
+ 
+
+Operating System     1. CLI    2. GUI 
+
+1964 - Bell Laboratory - New Jersey 
+     -5 people 
+     - multi tasking , multipurpose os 
+1969 - They withdraw
+
+Dennis Ritchie( C lang. developer) and Ken Thompson
+
+Unix - Uniplexed Information And Computing Services 
+  
+1975 - Unix v6
+
+UNIX        1 IBM 2 Solaris 3 Mac OS 4 HP-UX (Paid)
+1983    Richard Stallman   ----- withdraw
+
+1991 - LINUS TORVALDS 
+Freax - Linux   - ubuntu- kali- fedora - RHEL - Debian - Centos ( Free Source)
+
+1.Open Source     https://github.com/torvalds/linux   https://kernel.org
+2.Security 
+3.light weight 
+4.multi user
+5.Portable
+6.Community Support
+7.Simplified updates for All 
+
+Feature
+Windows
+Linux
+RAM
+4 GB minimum
+2 GB minimum
+Storage
+64 GB
+20 GB
+Speed
+Heavier
+Lightweight
+Hardware Need
+High
+Low
+
+
+
+
+
+
+
+
+
+        
+                         
+
+
+Before learning Linux, we should know what operating system is. An Operating System or OS  is the program which provides an environment to run other applications. OS interacts with hardware which means it acts as mediator between hardware and user interface. on the basis of their utilization, OS can be classified as Desktop OS and Server OS. Following are some differences between them
+
+
+	
+Desktop Operating System 	Server Operating System 
+• Basically, used in Desktop System. 	• Basically, used in server systems. 
+It runs client applications like 	• unlimited user connections 
+Photoshop, Office, Games, etc. 	• use of large amounts of memory 
+faster. 	• can act as web server, database 
+• Easy to access web services, like 	server, email server and other 
+email, browsing, searching 	server-like roles 
+• Rich media services 	• Optimized for network, instead of execution application local extended management . 
+• easy to use for non-expert users 	• Extended fault tolerance to avoid 
+• can work on a domain as a member 	downtimes 
+(professional edition only - home 	• can hold a domain 
+edition cannot join a domain) 	• Expensive 
+• Rich connectivity support (LAN, 	• Ex. Windows Server 2008, RHEL, 
+wireless, Bluetooth, etc.)	Centos, Debian, etc. 
+• cheaper than the server version 
+• Ex. Windows7, LinuxMint, Ubuntu 
+Desktop, etc. 
+                                                                        
+History of Linux: 
+Evolution of Computer 
+In earlier days, computers were as big as houses or parks. So, you can imagine how difficult it 
+was to operate them. Moreover, every computer has a different operating system which made it 
+completely worse to operate on them. Every software was designed for a specific purpose and was 
+unable to operate on other computer. It were extremely costly and normal people neither can afford it nor can understand it. 
+
+Evolution of UNIX 
+In 1969, a team of developers of Bell Labs started a project to make a common software for 
+all the computers and named it as 'UNIX'. It was simple and elegant, used 'C' language instead of 
+assembly language and its code was recyclable. As it was recyclable, a part of its code now commonly called 'kernel' was used to develop the operating system and other functions and could be used on different systems. Also, its source code was open source. Initially, UNIX was only found in large organizations like government, university, or larger financial corporations with mainframes and minicomputers (PC is a microcomputer). 
+
+UNIX Expansion 
+
+In eighties, many organizations like IBM, HP and dozen other companies started creating their 
+own UNIX. It results in a mess of UNIX dialects. Then in 1983, Richard Stallman developed GNU project with the goal to make it freely available UNIX like operating system and to be used by everyone. But his project failed in gaining popularity. Many other UNIX like operating system came into existence but none of them was able to gain popularity. 
+
+Evolution of Linux 
+In 1991, Linus Torvalds a student at the University Of Helsinki, Finland, thought to have a freely 
+available academic version of UNIX started writing its own code. Later this project became the Linux kernel. He wrote this program especially for his own PC as he wanted to use UNIX 386 Intel computer but couldn't afford it. He did it on MINIX using GNU C compiler. GNU C compiler is still the main choice to compile Linux code but other compilers are also used like Intel C compiler. 
+He started it just for fun but ended up with such a large project. Firstly, he wanted to name it 
+as 'Freax' but later it became 'Linux'. 
+He published the Linux kernel under his own license and was restricted to use as commercially. 
+Linux uses most of its tools from GNU software and are under GNU copyright. In 1992, he released the kernel under GNU (General Public License). 
+
+User Interface
+
+GUI (Graphical User Interface): Windows, macOS, Linux desktops
+
+CLI (Command Line Interface): Linux, Unix (terminal-based)
+
+Linux offers both GUI and CLI.
+
+
+Linux Today 
+Today, supercomputers, smart phones, desktop, web servers, tablet, laptops and home 
+appliances like washing machines, DVD players, routers, modems, cars, refrigerators, etc. use Linux 
+os. 
+
+Linux	UNIX 
+The Source Code of Linux is freely available to 	The Source Code of UNIX is not available for the 
+its Users. 	general public. 
+	
+Linux primarily uses Graphical User Interface 	UNIX primarily uses Command Line Interface. 
+with an optional Command Line Interface. 	
+	
+Linux OS is portable and can be executed in 	UNIX is not portable. 
+different Hard Drives. 	
+	
+Linux is very flexible and can be installed on 	Different versions of UNIX are: AIS, HP-UX, BSD, 
+most of the Home-Based and Servers. 	Iris, etc.
+Different Versions of Linux are: Ubuntu, 	
+Debian, OpenSuse, RedHat, Solaris, etc. 	
+	
+Linux Installation is economical and doesn't 	UNIX has a rigid requirement of the Hardware. 
+require much specific and high-end hardware. 	Hence, cannot be installed on every other 
+	machine. 
+The File systems supported by Linux are as 	UNIX Installation is comparatively costlier as it 
+follows: xfs, ramfs, nfs, vfat, cramfsm ext3, 	requires more specific hardware circuitry. 
+ext4, ext2, extl, ufs, autofs, devpts, ntfs 	
+	The File systems supported by UNIX are as 
+Linux is development by an active Linux 	follows: zfs, js, hfx, gps, xfs, gps, xfs, vxfs. 
+Community worldwide. 	UNIX is developed by AT&T Developers (Bell lab)
+
+-
