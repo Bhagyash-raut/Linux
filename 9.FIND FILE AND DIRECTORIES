@@ -1,0 +1,83 @@
+FIND
+	To search for files and directories
+Find    /      -name        <file-name>
+Find    /home     -name        <file-name>
+Find    /etc     -name        <file-name>
+Find    /Desktop     -name        <file-name>
+Find /home -name <file-name>  --------- specific search for file
+Find /  -type f -name "*.log"   ----------- by extension
+Find .  -name <file-name> ----------------current  directory operation
+ Find by name
+
+find /   home -name "file.txt"
+
+Find by type
+
+find / -type f      --------- files
+find / -type d      -----------directories
+
+ Find by size
+
+find /var -size +100M       -------------greater than 100MB
+find /var -size -10M        ------------less than 10MB
+find /var -size 50M       ---------------exactly 50MB
+
+Find by permissions
+
+find / -perm 777
+find / -perm -u=rwx
+
+Find by user
+
+find /home -user ec2-user
+
+Find by modified time
+
+find / -mtime 1     -------------modified 1 day ago
+find / -mtime -1    --------------modified in last 24 hrs
+find / -mtime +7     --------------older than 7 days
+
+ Find and delete files
+
+find /tmp -name "*.log" -delete
+
+Find empty files
+
+find / -type f -empty
+
+ Find large files (useful for disk cleanup)
+
+find / -type f -size +500M
+Option
+Meaning
+-mtime
+File modified time (content changed)
+-atime
+File access time (opened/read)
+-ctime
+File change time (permissions/owner changed)
+
+Symbol
+Meaning
+-
+less than (recent)
++
+more than (older)
+no sign
+exact
+
+find .   -type f  -newermt    "2026-04-10 10:00:00"
+
+LOCATE
+     - To quickly find files by name.
+Sudo updatedb --------------settings for the file
+Locate <file_name> -------------- faster than find
+
+Limit results
+
+locate -n 5 file.txt
+
+Match exact filename
+
+locate -r "/file.txt$"
+
