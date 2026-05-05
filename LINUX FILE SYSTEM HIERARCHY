@@ -1,0 +1,133 @@
+Navigating the File System 
+                                         
+Windows                                                                                         	Linux
+c:\	                                                                                        /   --- root directory
+	
+Configuration files are stored in C:\Windows	/etc
+	
+Home directory for user	
+c:\user	                                                                                           /home
+	
+c:\program files	                                                  /usr  -by default, software files are stored in this directory   /opt
+	
+	                                                                                                  /tmp
+Temporary files: c:\temp	
+	                                                                                     /root -- home directory of root user
+	
+	                                                                                    /boot--it contains all boot loader files
+	
+                                                                         	/lib----- application supported files/essential library files
+	
+                                                                                	/dev--essential devices files and their block files
+	
+	                                                                                     /media-- mount point for removable media
+	
+                                                                          	/var -----it stores variable data such as  mails, logs , messages, etc
+	
+                                                                        	/mnt ------ standard directory to mount storage devices temporary. In mnt, temporary files available up to 30 days
+	
+	                                                                                       /run ----- current running devices
+	
+	                                                                              /bin -----it stores binary executables files. These binary executable files are nothing but the commands. It is a link of /usr/bin directory. ( this directory contains commands that can be used by local users.)
+	
+                                                                                     	/sbin -------- it stores binary executable files. Only super user have permission to access this.
+	
+                                                                                             	/srv ------service information or data
+	
+	                                                                                              /sys -----system information
+	
+	                                                                                             /proc ---- processes information. This directory
+	                                                                                               also stores RAM and CPU related information.
+	
+
+What is Linux File System?
+Linux follows a tree structure starting from:
+/
+This is called the root directory.
+Think of it like:
+	/ → Main gate of building
+	/home → User rooms 
+	/etc → Configuration room
+	/var → Logs and variable data
+	/opt → Application installation
+	/tmp → Temporary files
+
+
+ Linux Special Symbols Notes
+1. ^ (Caret symbol)
+Use case 1 – Negation in regex / grep
+Used to match start of line.
+
+grep '^root'  /etc/passwd     ----------------- Shows lines starting with root
+Grep -v '^root'  /etc/passwd     -----------------   Shows lines not starting with root
+	• ^ outside brackets → start of line 
+	• [^...] inside brackets → negation of characters (single char at a time)
+
+Use case 2 – Negation inside brackets
+
+ls [^a]*      ----------------------Shows files NOT starting with a
+
+2. &> (Redirect both output and error)
+Used to redirect stdout + stderr together
+
+ls file1 file2 &> output.txt-------------------------Both normal output and error go to file
+Example:
+
+ls test1 test2 &> log.txt
+If test2 not exist → error also saved in log.txt
+
+3. 2> (Redirect error only)
+2 = `stderr
+> = redirect
+
+ls file1 file2 2> error.txt ---------------Only error saved
+Example:
+
+ls test1 test2 2> err.txt
+Output → screen
+Error → err.txt
+
+4. * (Wildcard – all)
+Matches any number of characters
+Use case 1
+ls *----------------------All files
+Use case 2
+ls *.txt-------------------All txt files
+Use case 3
+rm file*---------------------Remove all files starting with file
+file1
+file2
+file3
+
+5. ? (Wildcard – single character)
+Matches only one character
+Use case 1
+ls file?-----------------Matches
+file1
+file2
+fileA
+Use case 2
+ls ?.txt-------------Matches:
+a.txt
+b.txt
+Symbol
+Meaning
+Use case
+^
+Start / Negation
+grep ^root
+&>
+Redirect all output
+cmd &> file
+2>
+Redirect error
+cmd 2> file
+*
+All characters
+*.txt
+?
+One character
+file?
+
+
+
