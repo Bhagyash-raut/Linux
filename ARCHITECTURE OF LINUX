@@ -1,0 +1,35 @@
+Linux Architecture consist of inner most Hardware layer, kernel, shell, and outer application layer. Each layer has different functionalities and different uses. 
+
+Linux follows a layered architecture:
+	1. Hardware – CPU, RAM, devices ,All the hardware components such as motherboard, CPU, hard disk, etc. are comes under this layer
+	
+	2. Kernel – Kernel is the program which actually communicates with the hardware. Combining shell and kernel forms Operating System. Core of Linux, manages hardware and resources
+	
+	3. Shell – [Command interpreter (bash)]
+	 Shell provides environment to run any application. It provides interface to the user to interact with hardware. We can say that it converts higher level language to lower level language. 
+	
+	4. System Libraries – Provide functions to applications
+	
+	5. Applications – User programs, Users interact with the system through varies applications such as office, games,etc.
+	These applications run in outer layer of architecture. 
+	
+	 The kernel is the heart of Linux and controls everything
+Operating Systems are the backbone of all computing devices. Linux stands out for its security, flexibility, and open-source nature, making it widely used in servers and modern technology.
+
+Linux
+Power on/off
+     |
+BIOS/ UEFI   ( POST )
+     |
+BOOTLOADER
+     |
+   GRUB
+     |
+grub.cfg
+     |
+Kernel (vmlinuz)
+     |                       initramfs
+  Systemd
+     |
+ Systemctl
+
