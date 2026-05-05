@@ -53,35 +53,23 @@ Hardware Need
 High
 Low
 
-
-
-
-
-
-
-
-
-        
-                         
-
-
 Before learning Linux, we should know what operating system is. An Operating System or OS  is the program which provides an environment to run other applications. OS interacts with hardware which means it acts as mediator between hardware and user interface. on the basis of their utilization, OS can be classified as Desktop OS and Server OS. Following are some differences between them
 
 
 	
-Desktop Operating System 	Server Operating System 
-• Basically, used in Desktop System. 	• Basically, used in server systems. 
-It runs client applications like 	• unlimited user connections 
-Photoshop, Office, Games, etc. 	• use of large amounts of memory 
-faster. 	• can act as web server, database 
-• Easy to access web services, like 	server, email server and other 
+Desktop Operating System 	                 Server Operating System 
+• Basically, used in Desktop System.        	• Basically, used in server systems. 
+It runs client applications like            	• unlimited user connections 
+Photoshop, Office, Games, etc. 	                • use of large amounts of memory 
+faster. 	                                    • can act as web server, database 
+• Easy to access web services, like 	          server, email server and other 
 email, browsing, searching 	server-like roles 
-• Rich media services 	• Optimized for network, instead of execution application local extended management . 
-• easy to use for non-expert users 	• Extended fault tolerance to avoid 
-• can work on a domain as a member 	downtimes 
-(professional edition only - home 	• can hold a domain 
-edition cannot join a domain) 	• Expensive 
-• Rich connectivity support (LAN, 	• Ex. Windows Server 2008, RHEL, 
+• Rich media services 	                        • Optimized for network, instead of execution application local extended management . 
+• easy to use for non-expert users           	• Extended fault tolerance to avoid 
+• can work on a domain as a member downtimes 
+(professional edition only - home 	            • can hold a domain 
+edition cannot join a domain) 	                • Expensive 
+• Rich connectivity support (LAN,        	    • Ex. Windows Server 2008, RHEL, 
 wireless, Bluetooth, etc.)	Centos, Debian, etc. 
 • cheaper than the server version 
 • Ex. Windows7, LinuxMint, Ubuntu 
@@ -126,29 +114,29 @@ Today, supercomputers, smart phones, desktop, web servers, tablet, laptops and h
 appliances like washing machines, DVD players, routers, modems, cars, refrigerators, etc. use Linux 
 os. 
 
-Linux	UNIX 
+Linux	                                                               UNIX 
 The Source Code of Linux is freely available to 	The Source Code of UNIX is not available for the 
 its Users. 	general public. 
 	
-Linux primarily uses Graphical User Interface 	UNIX primarily uses Command Line Interface. 
+Linux primarily uses Graphical User Interface     	UNIX primarily uses Command Line Interface. 
 with an optional Command Line Interface. 	
 	
-Linux OS is portable and can be executed in 	UNIX is not portable. 
+Linux OS is portable and can be executed in 	    UNIX is not portable. 
 different Hard Drives. 	
 	
-Linux is very flexible and can be installed on 	Different versions of UNIX are: AIS, HP-UX, BSD, 
-most of the Home-Based and Servers. 	Iris, etc.
+Linux is very flexible and can be installed on 	    Different versions of UNIX are: AIS, HP-UX, BSD, 
+most of the Home-Based and Servers. 	             Iris, etc.
 Different Versions of Linux are: Ubuntu, 	
 Debian, OpenSuse, RedHat, Solaris, etc. 	
 	
-Linux Installation is economical and doesn't 	UNIX has a rigid requirement of the Hardware. 
-require much specific and high-end hardware. 	Hence, cannot be installed on every other 
+Linux Installation is economical and doesn't 	    UNIX has a rigid requirement of the Hardware. 
+require much specific and high-end hardware. 	    Hence, cannot be installed on every other 
 	machine. 
-The File systems supported by Linux are as 	UNIX Installation is comparatively costlier as it 
-follows: xfs, ramfs, nfs, vfat, cramfsm ext3, 	requires more specific hardware circuitry. 
+The File systems supported by Linux are as       	UNIX Installation is comparatively costlier as it 
+follows: xfs, ramfs, nfs, vfat, cramfsm ext3,    	requires more specific hardware circuitry. 
 ext4, ext2, extl, ufs, autofs, devpts, ntfs 	
-	The File systems supported by UNIX are as 
-Linux is development by an active Linux 	follows: zfs, js, hfx, gps, xfs, gps, xfs, vxfs. 
-Community worldwide. 	UNIX is developed by AT&T Developers (Bell lab)
+	                                                The File systems supported by UNIX are as 
+Linux is development by an active Linux 	        follows: zfs, js, hfx, gps, xfs, gps, xfs, vxfs. 
+Community worldwide. 	                            UNIX is developed by AT&T Developers (Bell lab)
 
 -
