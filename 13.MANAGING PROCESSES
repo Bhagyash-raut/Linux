@@ -1,0 +1,290 @@
+For everything that happens on a Linux server, a process is started. For that reason, process management is among the key skills that an administrator has to master. To do this efficiently, it is important to know which type of process you are dealing with. 
+A major distinction can be made between two process types: 
+Shell jobs are commands started from the command line. They are associated with the shell that was current when the process was started. Shell jobs are also referred to as interactive processes. 
+Daemons are processes that provide services. They normally are started when a computer is booted and often (but certainly not in all cases) they are running with root privileges. 
+
+Running Jobs in the Foreground and Background 
+
+Command Use, 
+
+&>	                  (used at the end of a command line) Starts the command immediately in the background. 
+	
+Ctrl+Z              	Stops the job temporarily so that it can be managed. For instance, it can be moved to the background. 
+	
+Ctrl+D                Send the End Of File (EOF) character to the current job to indicate that it should stop waiting for further input. 
+	                    Can be used to cancel the current interactive job 
+Ctrl+C 	
+# bg                  Continues the job that has just been frozen using Ctrl+Z in the background. 
+ 	
+# fg		              Brings the last job that was moved to background execution back to the foreground.
+
+# jobs 	              Shows which jobs are currently running from current shell. Displays job numbers that can be used as an argument to the command bg and fg
+
+
+Understanding Processes and Threads 
+Core is a physical processing unit, and thread is a virtual unit that executes tasks inside the core.
+Tasks on Linux are typically started as processes. One process can start several worker threads. Working with threads makes sense, because if the process is very busy, the threads can be handled by different CPUs or CPU cores available in the machine. As a Linux administrator, you cannot manage individual threads; you can manage processes, though. It is the programmer of the multithreaded application that has to define how threads relate to one another. 
+ps command and some of its important options, 
+#ps -e	Standard Syntax 
+#ps aux	System using BSD syntax
+#ps axjf	Process tree 
+#ps -eLf	Process threads 
+#ps -C sshd -o pid=11288	Print only the process IDs of specific id 
+
+Monitoring processes using ps fax, 
+--------------------------------------------------> ps fax 
+PID TTY STAT TIME COMMAND 
+16ø3 ? ss ø:ØØ /usr/sbin/sshd -D 
+35395 ? ss ø:øø sshd: root@pts/l \
+
+
+Monitoring processes using ps aux 
+-----------------------------------------------> ps aux 
+USER PID %CPU XMEM VSZ RSS TTY STAT START TIME COMMAND 
+root 1 e.ø 0.4 52984 4272 ? ss Feb05 0:03 /usr/lib/ 
+
+Monitoring processes using ps —ef 
+------------------------------------------------> ps -ef
+I-JID PID PPID C STIME TTY TIME CMD 
+
+Important columns of ps command's output, 
+PID 	Process identification Number 
+PPID 	Parent Process Identifier 
+PGID 	Process Group Identifier (Process Group Leader) 
+UID 	Process User Identifier (owner of process) 
+STIME 	Time of starting the process 
+STATE 	Process states 
+CMD 	command by which process has started 
+TTY	Terminal from which process has started 
+PR	Priority of Process 
+NI 	Nice value of process 
+LWP	Light Weight Process 
+NLWP 	Number of light Weight Processes 
+
+Adjusting Process Priority with nice 
+When Linux processes are started, they are started with a specific priority. By default, all regular processes are equal and are started with the same priority, which is the priority number 20. In some cases, it is useful to change the default priority that was assigned to the process when it was started. You can do that using the nice and renice commands. Changing process priority may make sense in two different scenarios. 
+
+nice → set priority when starting a process 
+
+renice → change priority of a running process 
+
+Nice value range:
+
+-20   → Highest priority (fastest) 
+ 0    → Default priority
++19   → Lowest priority (slowest) 
+Lower nice value = higher priority       Higher nice value = lower priority
+
+Nice and renice values - are used to manage process priorities 
+	Process have  assigned priorities , which dictates the order in which they are executed by the CPU . This priority is managed using nice value.
+	
+	-20 = -20 most priority                   sleep 60 -15
+	 20 = least priority                           sleep 100 -5 
+	                                                            sleep 50  10
+	                                                            sleep 40 0
+
+Renice Command : -used to change the process priority 
+Syntax: renice -n priority(-20to20) PID
+Eg:
+renice -n  <priority(-20)>       PID
+
+Nice Command : -used to assign the process priority
+Syntax: 
+nice -n   <priority(-20)>       PID
+Eg:
+Nice -n 10 sleep 60
+
+Example 
+Jenkins build is slow
+
+You want high priority
+
+Find PID:
+
+ps -ef | grep jenkins
+
+Increase priority:
+
+sudo renice -5 -p 2345
+
+Now Jenkins gets more CPU 
+
+
+Example: that you are about to start a backup job that does not necessarily have to finish fast. Typically, backup jobs are rather resource intensive, so you might want to start it in a way that it is not annoying other users too much, by lowering its priority. 
+Another example is where you are about to start a very important calculation job. To ensure that it is handled as fast as possible, you might want to give it an increased priority, taking away CPU time from other processes .When using nice or renice to adjust process priority, you can select from values ranging from -20 to 19. 
+Changing nice value using renice command, 
+------------------------------------------->sleep  1000  & 
+[2] 2xxx
+-------------------------------------------> ps -I 
+F S UID PID PPID C PRI NI ADDR SZ WCHAN 
+
+TIP: Do not set process priority to -20; it risks blocking other processes from getting served. 
+
+Sending Signals to Processes with kill, killall, and pkill 
+The Linux kernel allows many signals to be sent to processes. Use man 7 signals for a complete overview of all the available signals. Three of these signals work for all processes: 
+	• The signal SIGTERM (15) is used to ask a process to stop. 
+	• The signal SIGKILL (9) is used to force a process to stop. 
+	• The SIGHUP (1) signal is used to hang up a process. The effect is that the process will 
+reread its configuration files, which makes this a useful signal to use after making 
+modifications to a process configuration file. 
+
+To send a signal to a process, the kill command is used. The most common use is the need to stop a process, which you can do by using the kill command followed by the PID of the process. This sends the SIGTERM signal to the process, which normally causes the process to cease its activity. 
+Sometimes the kill command does not work because the process you want to kill is busy. In that case, you can use kill -9 to send the SIGKILL signal to the process. 
+Because the SIGKILL signal cannot be ignored, it forces the process to stop, but you also risk losing data while using this command. In general, it is a bad idea to use kill -9 because, 
+• You risk losing data. 
+• Your system may become unstable if other processes depend on the process you have just killed. 
+Sending signal using kill command, 
+---------------------------------------->   kill —I 
+1) SIGHUP 
+2) SIGINT 
+3) SIGQUIT 
+4) SIGKILL 
+5) SIGTRAP
+6) SIGABRT 
+8) SIGFPE 
+9) SIGKILL 
+10) SIGUSRI 
+…
+TIP: Use kill -I to show a list of available signals that can be used with kill. 
+
+Linux Process States Overview 
+
+State	Meaning
+Running (R) 	The process is currently active and using CPU 
+	time, or in the Queue of runnable processes 
+	waiting to get services. 
+Sleeping (S) 	The process is waiting for an event to complete. 
+	
+Uninterruptable sleep (D) 	The process is in a sleep state that cannot be 
+	stopped. This Usually happens while a process is 
+	waiting for I/O . 
+Stopped (S) 	The process has been stopped, which typically 
+	has happened to an interactive shell process, 
+	using the Ctrl+Z key sequence. 
+Zombie (Z) 	The process has been stopped but could not be 
+	removed by its parent, which has put it in an 
+	unmanageable state.
+
+Monitoring process using top command 
+top command is used to show the Linux processes. It provides dynamic real-time view of running system. Usually, this command shows the summary information of the system and the list of processes or threads which are currently managed by the Linux Kernel. As soon as you will run this command it will open an interactive command mode where the half portion will contain the statistics of processes and resource usage. And Lower half contains a list of the currently running processes. 
+Pressing q will simply exit the command mode. 
+--------------------------------> top 
+
+
+
+A job is a process that the shell manages. Each job is assigned a sequential job ID. Because a job is a process, each job has an associated PID. There are three types of job statuses:
+
+	• Foreground: When you enter a command in a terminal window, the command occupies that terminal window until it completes. This is a foreground job
+	• Background: When you enter an ampersand (&) symbol at the end of a command line, the command runs without occupying the terminal window. The shell prompt is displayed immediately after you press Return. This is an example of a background job
+	• Stopped: If you press Control + Z for a foreground job, or enter the stop command for a background job, the job stops. This job is called a stopped job. 
+Example, 
+Running job in background 
+----------------------------------> sleep 200 & 
+[2] 2261 
+----------------------------------> jobs                                                 ----------> Listing Jobs
+
+Bring background jobs to foreground 
+----------------------------------> fg %1                                            -----------> used ctrl+z to stop foreground process 
+sleep løøø 
+
+
+
+Killing Processes 
+Usually, a process terminates on its own when they're done with their task, or when you ask them to quit. However, sometimes a process can hang up or consume a lot of CPU or RAM. In this situation, you would want to manually "kill" the process. In order to kill a process, you should first locate the details of the process. You can do this through following commands: top, ps, pidof and pgrep. 
+(We had already seen how to get details of processes using top and ps command in this chapter.) 
+Getting process details using pgrep, 
+	pgrep command searches for processes currently running on the system, based on a 
+	complete or partial process name, or other specified attributes. 
+------------------------------> pgrep -a sleep                            ->all processes of name 'sleep' 
+2261 sleep 
+2368 sleep 200 
+------------------------------> pgrep -a -u root                        -> all processes of root user 
+1 /bin/sh /sbin/init 
+2 kthreadd 
+3 kworker/0:e 
+4 kworker/ø:OH 
+S kworker/u2:Ø 
+
+Getting process details using pidof, 
+
+pidof command searches processes currently running on system. This command is similar to 
+pgrep command but it shows process id only. 
+------------------------------->pidof sleep 
+2261 2368 
+
+
+Getting process details using pstree and pidstat 
+pstree command is similar to ps command but instead of showing detailed information, 
+pstree command shows processes in tree structure. Pstree command followed by user name 
+will give process tree generated from that particular user. 
+
+pidstat command is used for monitoring individual tasks currently being managed by the 
+Linux kernel. It writes to standard output activities for every task managed by the Linux kernel. 
+The pidstat command can also be used for monitoring the child processes of selected tasks. 
+The interval parameter specifies the amount of time in seconds between each report. 
+
+Important signals that are used to kill or terminate the process: 
+Signal_no. 	Short_name 	Signal_no. 	Short name 
+3 	QUIT 	9 	KILL 
+15 	TERM 	18 	CONT 
+19 	STOP 	20 	TSTP 
+Examples, 
+Killing process using process id, 
+.---------------------------> pgrep —a sleep 
+2261 sleep leøø 
+2368 sleep 200 
+----------------------------> kill -9 2261 
+sleep 1060 
+[1]+ Killed 
+Killing process using process name (using pkill or killall) 
+----------------------------> pgrep —a sleep 
+2261 sleep leee 
+2368 sleep 2ee 
+----------------------------> killall sleep 
+Terminated 
+[2]+ Terminated 
+sleep loeo 
+sleep 200 
+System Information using uptime, 
+Uptime tell how long the system has been running. It gives a one line display of the following 
+information. The current time, how long the system has been running, how many users are currently 
+logged on, and the system load averages for the past 1, 5, and 15 minutes. 
+------------------------------------> uptime
+
+Kill Command: is used to a process manually 
+Syntax:
+ 
+Kill [option] [PID]
+Here,
+Option = Signal name or number
+PID = Process ID
+
+Option :
+-9 = forcefully terminate the process 
+Eg:
+
+Kill -9  123456
+
+Multiple Instructions Sequentially
+Run commands one by one
+
+command1  &&   command2----------------------------command2 runs only if command1 succeeds
+
+Run all regardless of success ---------------------------command1 ; command2
+
+Long Running Process
+Problem
+You start a job, then SSH disconnects → process stops 
+
+Solution: Use nohup----------------------nohup python app.py &
+Output goes to:-----------------nohup.out---------------------------Process continues even after logout
+
+while True:
+    print("This loop will run forever")
+
+Background Jobs
+
+python loop.py &
+tail -f logs.txt &
+Check running jobs:-------------------------jobs
+Bring back to foreground:-----------------------------------fg %1
